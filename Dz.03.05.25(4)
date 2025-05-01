@@ -1,0 +1,58 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace Lessons2
+{
+
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            List<Enemy> enemies = new List<Enemy>
+          {
+              new Goblin(),
+              new Dragon()
+          };
+
+             foreach (Enemy enemy in enemies)
+            {
+                enemy.Attack();
+            }
+
+        }
+    }
+
+    public class Enemy
+    {
+        public virtual void Attack()
+        {
+            Console.WriteLine("Враг аттакует");
+        }
+
+    }
+
+    public class Goblin : Enemy
+    {
+        public override void Attack()
+        {
+            Console.WriteLine("Гоблин аттакует");
+        }
+    }
+
+    public class Dragon : Enemy
+    {
+        public override void Attack()
+        {
+            Console.WriteLine("Дракон аттакует");
+        }
+    }
+
+}
