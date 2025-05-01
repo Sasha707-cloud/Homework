@@ -1,0 +1,51 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lessons2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Hero hero = new Hero();
+            hero.Health = 100;
+
+            Console.WriteLine($"Начальное здоровье: {hero.Health}");
+
+            hero.TakeDamage(30);
+            hero.TakeDamage(50);
+        }
+    }
+
+    public class Hero
+    {
+
+        private int health;
+
+        public int Health//свойство
+        {
+            get { return health; }
+
+            set
+            { health = value < 0 ? 0 : value; }
+            
+        }
+
+        //метод который уменьшает здоровье
+        public void TakeDamage(int amount)
+        {
+            Console.WriteLine($"Здоровье до удара: {Health}");
+            Health =- amount;
+            Console.WriteLine($"Здоровье после удара: {Health}");
+        }
+
+
+    }
+
+}
