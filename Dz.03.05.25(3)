@@ -1,0 +1,44 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace Lessons2
+{
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Enemy enemy1 = new Enemy();
+            enemy1.Type = "Магический";
+            enemy1.Damage = 100;
+
+            Enemy enemy2 = new Enemy();
+            enemy2.Type = "Огненый";
+            enemy2.Damage = 70;
+
+            enemy1.Attack();
+            enemy2.Attack();
+
+        }
+    }
+
+    public class Enemy
+    {
+        public string Type;
+        public int Damage;
+
+        public void Attack()
+        {
+            Console.WriteLine($"{Type} наносит {Damage} урона!");
+        }
+       
+    }
+
+}
