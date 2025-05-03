@@ -1,0 +1,69 @@
+using System;
+
+class IslandCounter
+{
+    //метод для подсчета островов
+    public static int CountIslands(int[,] grid)
+    {
+        //проверка на пустоту
+        if (grid == null || grid.Length == 0)
+        {
+            return 0;
+        }
+
+        int count = 0;//считаем острова
+        int rows = grid.GetLength(0);//количество строк
+        int cols = grid.GetLength(1);//столбцы
+
+        //проверка сетки
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                //если нашли сушу
+                if(grid[i, j] == 1)
+                {
+                    count++;
+                    
+                    FloodFill(grid, i, j, rows, cols);
+                }
+            }
+
+        }
+
+        return count;
+    }
+
+    //функция для заполнения островов
+    private static void FloodFill(int[,] grid, int i, int j, int rows, int cols)
+    {
+        //проверка
+        //границ массива и вода ли это
+        if (i < 0 || j < 0 || i >= rows || j >= cols || grid[i, j] == 0)
+        {
+            return;
+        }
+
+        //проверяем ячейка. вода ли это
+        FloodFill(grid, i + 1, j, rows, cols); //вниз
+        FloodFill(grid, i - 1, j, rows, cols);//вверх
+        FloodFill(grid, i, j + 1, rows, cols);//вправо
+        FloodFill(grid, i, j - 1, rows, cols);//влево
+    }
+
+    //пример использования
+    public static void Main(string[] args)
+    {
+        //сетка
+        int[,] grid = new int[,]
+        {
+            {1, 1, 0, 0, 0},
+            {1, 1, 0, 0, 0},
+            {0, 0, 1, 0, 0},
+            {0, 0, 0, 1, 1}
+        };
+
+        int islandCount = CountIslands(grid);
+        Console.WriteLine("Количество островов: " + islandCount);
+    }
+}
